@@ -57,8 +57,8 @@
         - Labels: **`docker-node`**
         - Usage: **`Only build jobs with label expressions matching this node`**
         - Launch method: **`Launch agents via SSH`**
-        - Host: **`docker.martin.bg`**
-        - Credentials: **`jenkins (Username with private key)`**
+          - Host: **`docker.martin.bg`**
+          - Credentials: **`jenkins (Username with private key)`**
     - Manage Jenkins -> Configure Global Security -> SSH Server
       - Fixed: **`2222`**
       - Test SSH Server
@@ -86,20 +86,20 @@
     - Several stages for process automation:
       - Downloading the project from your Gitea repository
         - [**`http://192.168.34.202:3000/douser/bgapp.git`**](http://192.168.34.202:3000/douser/bgapp.git)
-        - Prepare volumes
-          - create folder "web" to host needed files for web server volume
-        - Deploy on development
-          - using **`docker-compose.yaml`** from development folder to build images from **`Dockerfile.web`** & **`Dockerfile.db`**
-        - Testing the application for reachability on development
-          - test if containers are up & running and curl command returns status code 200
-          - sleep for 30 seconds - needed for db server to be up & running successfully
-          - test if db show data for some city
-        - Publishing the images to Docker Hub
-          - try to login to [**`https://hub.docker.com`**](https://hub.docker.com) with environment credentials
-          - tag & push to repository the created images
-        - Stopping the application and removing the containers
-          - docker compose down using **`docker-compose.yaml`** from development folder
-        - Deploy on production
-          - docker compose up using **`docker-compose.yaml`** from production folder
+      - Prepare volumes
+        - create folder "web" to host needed files for web server volume
+      - Deploy on development
+        - using **`docker-compose.yaml`** from development folder to build images from **`Dockerfile.web`** & **`Dockerfile.db`**
+      - Testing the application for reachability on development
+        - test if containers are up & running and curl command returns status code 200
+        - sleep for 30 seconds - needed for db server to be up & running successfully
+        - test if db show data for some city
+      - Publishing the images to Docker Hub
+        - try to login to [**`https://hub.docker.com`**](https://hub.docker.com) with environment credentials
+        - tag & push to repository the created images
+      - Stopping the application and removing the containers
+        - docker compose down using **`docker-compose.yaml`** from development folder
+      - Deploy on production
+        - docker compose up using **`docker-compose.yaml`** from production folder
     - Post stage to clear workspace
 7. **The result can be seen at [**`http://192.168.34.202`**](http://192.168.34.202)**
